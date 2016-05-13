@@ -9,12 +9,7 @@ h=ss(4);
 
 max_val=mean(max(data(1:7,:),[],2));
  min_val=mean(min(data(1:7,:),[],2));        %Find the maximum and minimum values of EEG response
-% 
-% for i=1:7
-% 
-% r(i,:) = min_val + (max_val-min_val).*rand(1,800);
-% 
-% end
+
 
 n= 8+ round((83-8)*rand(7,1));
 
@@ -50,11 +45,11 @@ ylim([min_val-20 max_val+20]);
 ax=gca;
 ax.XTick=[1000 2000 3000 4000 5000 6000 7000 8000];
 ax.XTickLabel=[5 10 15 20 25 30 35 40];
-xlabel('Time (s)');
-ylabel('EEG Response (\muV)');
+xlabel('Time (s)','FontName','Source Sans Pro');
+ylabel('EEG Response (\muV)','FontName','Source Sans Pro');
 
 
-text(300,-40,labels,'Color','blue','FontSize',30,'FontWeight','bold');
+text(300,-40,labels,'Color',[0.055 0.451 0.7255],'FontSize',30,'FontWeight','bold','FontName','Source Sans Pro');
 
 hold on;
 
@@ -74,8 +69,8 @@ for x=1:7
         drawnow
         end
     
-            stim=text(3700,-40,'Stimulus','Color',gg,'FontSize',20,'FontWeight','bold');
-            text(601+(x-1)*(601+601)+601/4,40,['ERP ',int2str(x)],'Color',gg,'FontSize',15,'FontWeight','bold');
+            stim=text(3700,-40,'Stimulus','Color',gg,'FontSize',20,'FontWeight','bold','FontName','Source Sans Pro');
+            text(601+(x-1)*(601+601)+601/4,40,['ERP ',int2str(x)],'Color',gg,'FontSize',15,'FontWeight','bold','FontName','Source Sans Pro');
             
     for p=1:15:length(data)
    

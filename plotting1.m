@@ -44,12 +44,12 @@ function  plotting1( hObject, handles )
     %Plot stimulus offset line
     plot([101 101],[-20 20],'k--','LineWidth',2);
     hold off;
-    text(115,18,'Stimuls Onset','Color','black','FontSize',12,'FontWeight','bold','FontUnit','normalized');
+    text(115,18,'Stimuls Onset','Color','black','FontSize',12,'FontWeight','bold','FontUnit','normalized','FontName','Source Sans Pro');
     set(gca,'XTick',[0 100 300 500]);
     set(gca,'XTickLabel',{-0.5 0 1 2},'FontUnit','normalized');
    
-    xlabel('Time from Stimulus Onset (seconds)','FontSize',12,'FontUnit','normalized');%,'FontWeight','bold');
-    ylabel('EEG Response (\muV)','FontSize',12,'FontUnit','normalized');
+    xlabel('Time from Stimulus Onset (s)','FontSize',12,'FontUnit','normalized','FontName','Source Sans Pro');%,'FontWeight','bold');
+    ylabel('EEG Response (\muV)','FontSize',12,'FontUnit','normalized','FontName','Source Sans Pro');
     ylim([-20 20]);
     drawnow
     %Once the stimulus has been plotted the user will be allowed to baseline
@@ -64,7 +64,7 @@ function  plotting1( hObject, handles )
             hold on;
             plot([w w],[-20 20],'r:')%,'LineWidth',2)
             plot([0 601], [0 0],'r:');
-            text(601,0,'Baseline','Color','red','FontSize',12,'FontUnit','normalized');
+            text(601,0,'Baseline','Color','red','FontSize',12,'FontUnit','normalized','FontName','Source Sans Pro');
             
             hold off;
         end

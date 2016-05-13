@@ -39,8 +39,8 @@ function [hObject, handles]=reference_plotting1( hObject, handles)
         xlim([0 601]);
         set(gca,'XTick',[],'YTick',[],'XColor',[1 1 1],'YColor',[1 1 1],'FontUnit','normalized');
         %set(gca,'XTickLabel',{-0.5 0 1 2});
-        xlabel('time (seconds)','FontUnit','normalized'); ylabel('\muV','FontUnit','normalized');
-        title('Reference','Color',[1 1 1],'FontUnit','normalized')
+        xlabel('time (seconds)','FontUnit','normalized','FontName','Source Sans Pro'); ylabel('\muV','FontUnit','normalized','FontName','Source Sans Pro');
+        title('Reference','Color',[1 1 1],'FontUnit','normalized','FontName','Source Sans Pro')
         
         
     end

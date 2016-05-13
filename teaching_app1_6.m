@@ -28,8 +28,8 @@ function varargout = teaching_app1_6(varargin)
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
     'gui_Singleton',  gui_Singleton, ...
-    'gui_OpeningFcn', @teaching_app1_6_OpeningFcn, ...
-    'gui_OutputFcn',  @teaching_app1_6_OutputFcn, ...
+    'gui_OpeningFcn', @teaching_app1_5_OpeningFcn, ...
+    'gui_OutputFcn',  @teaching_app1_5_OutputFcn, ...
     'gui_LayoutFcn',  [] , ...
     'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -47,7 +47,7 @@ end
 %%plot3(a(1), a(2), a(3), 'r.', 'Parent', FirstAxesHandle)
 
 % --- Executes just before teaching_app1_5 is made visible.
-function teaching_app1_6_OpeningFcn(hObject, eventdata, handles, varargin)
+function teaching_app1_5_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -68,6 +68,13 @@ height=p(4);
 
 set(handles.figure1,'Position',[w*1/8,h*2/16,width,height]);
 
+handles.tcdlogo=imread('trinity-stacked.png');    
+%handles.tcdlogo=flipud(handles.tcdlogo);
+axes(handles.logo)
+image(handles.tcdlogo);
+set(gca,'XTick',[],'YTick',[]);
+box off
+set(gca,'XColor',[1 1 1],'YColor',[1 1 1],'TickDir','out')
 
 %Set handles
 handles.ChannelLabels=ChannelLabels;
@@ -92,8 +99,8 @@ handles.chan_indices= [19 17 16 18 20; 9 7 6 8 10; 4 2 1 3 5; 14 12 11 13 15; 24
 %Plotting the Topographic Map
 bheadsymbolplot
 handles.cl=ChannelCoordinates.*250;
-t=text(handles.cl(:,1),handles.cl(:,2), ChannelLabels,'Parent',handles.Spatial,'FontSize',12);
-set(t(1),'Color','blue','FontSize',17,'FontWeight','bold');
+t=text(handles.cl(:,1),handles.cl(:,2), ChannelLabels,'Parent',handles.Spatial,'FontSize',12,'FontName','Source Sans Pro');
+set(t(1),'Color',[0.055 0.451 0.7255],'FontSize',17,'FontWeight','bold','FontName','Source Sans Pro');
 handles.t=t;
 set(handles.apply_reference,'Enable','off');
 
@@ -105,7 +112,7 @@ guidata(hObject, handles);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = teaching_app1_6_OutputFcn(hObject, eventdata, handles)
+function varargout = teaching_app1_5_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -139,8 +146,8 @@ if handles.trig1
 
         a=eval(['handles.erp' int2str(j)]);        %Determine the current axis
         axes(a);
-        plot(1:601,squeeze(handles.ERP(i,j,:)),'Color','b')     %Plot ERP
-        set(gca,'XTick',[]);
+        plot(1:601,squeeze(handles.ERP(i,j,:)),'Color',[0.055 0.451 0.7255])     %Plot ERP
+        set(gca,'XTick',[],'YTick',[]);
         ylim([-50 50])
         xlim([-50 651])
         
@@ -151,8 +158,8 @@ if handles.trig1
         end
         
         if j>=22
-            set(gca,'XTick',[0 100 300 500],'FontUnit','normalized');
-            set(gca,'XTickLabel',{-0.5 0 1 2});
+            set(gca,'XTick',[],'YTick',[],'FontUnit','normalized');
+            %set(gca,'XTickLabel',{-0.5 0 1 2});
             
         end
     end
@@ -271,12 +278,12 @@ cla;
 plot(w/pi*handles.fs/2,abs(h),'LineWidth',3);
 
 hold on;
-xlabel('Frequency (Hz)');
+xlabel('Frequency (Hz)','FontName','Source Sans Pro');
 set(gca,'XColor',[1 1 1],'YColor',[1 1 1]);
 xlim([0 120]);
 ylim([0 1.2]);
 plot([handles.cut_off handles.cut_off], [0 1.2], 'r--','LineWidth',2);
-text(handles.cut_off+5,1,'f_{cut off}','Color','red','FontSize',12);
+text(handles.cut_off+5,1,'f_{cut off}','Color','red','FontSize',12,'FontName','Source Sans Pro');
 drawnow;
 hold off;
 
@@ -333,8 +340,8 @@ handles.technique=get(handles.chan_ref_pop, 'Value');       %Checks the channel 
 set(handles.selection_check2,'Visible','off');          %Automatically resets the 'No ERPs Selected Button' to off
 k=get(handles.Channel_list,'Value');                    %Find the current channel (Display purposes)
 axes(handles.Spatial);                                  %Reset all the channel texts to black and the selected channel to blue
-set(handles.t,'Color','black','FontSize',12,'FontWeight','normal');
-set(handles.t(k),'Color','blue','FontSize',17,'FontWeight','bold');
+set(handles.t,'Color','black','FontSize',12,'FontWeight','normal','FontName','Source Sans Pro');
+set(handles.t(k),'Color',[0.055 0.451 0.7255],'FontSize',17,'FontWeight','bold','FontName','Source Sans Pro');
 
 %Update the current_channel handle
 handles.current_channel=k;
@@ -384,7 +391,7 @@ if handles.technique>1
     if handles.technique==3
         
         set(handles.t,'Color',[0.094 0.663 0.184],'FontSize',14,'FontWeight','bold');
-        set(handles.t(handles.current_channel),'Color','blue','FontSize',17,'FontWeight','bold');
+        set(handles.t(handles.current_channel),'Color',[0.055 0.451 0.7255],'FontSize',17,'FontWeight','bold');
         handles.c=1:25;
         handles.c(handles.current_channel)=[];
         
